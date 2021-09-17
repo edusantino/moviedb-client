@@ -9,13 +9,13 @@
         android:id="@+id/viewBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         app:cardElevation="8dp"
         app:cardUseCompatPadding="true"
         app:cardCornerRadius="4dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="5dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_marginStart="5dp">
 
         <ImageView
             android:id="@+id/posterItemView"
@@ -43,15 +43,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="4dp"
-        android:maxLines="3"
+        android:layout_marginTop="10dp"
+        android:maxLines="2"
         android:text="A Viagem de Chirilo"
         android:textColor="@color/darkGray"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/viewBackground"
-        app:layout_constraintTop_toTopOf="@+id/viewBackground" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/yearItemView"
@@ -85,7 +85,7 @@
         android:textColor="@color/darkGray"
         style="@style/MovieDBTextView.Bold"
         android:textStyle="bold"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:textSize="14sp"
         android:text="Sinopse"
         app:layout_constraintTop_toBottomOf="@+id/yearItemView"
@@ -97,7 +97,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/darkGray"
         style="@style/MovieDBTextView.Light"
-        android:maxLines="3"
+        android:maxLines="2"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="15dp"
         android:textSize="12sp"
@@ -110,7 +110,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#43EAE9E9"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@+id/viewBackground" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
