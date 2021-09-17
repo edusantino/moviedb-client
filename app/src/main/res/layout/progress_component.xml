@@ -9,10 +9,10 @@
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:layout_height="30dp"
         android:layout_width="30dp"
-        android:id="@+id/progress"
+        android:id="@+id/progressIndicatorView"
         app:trackThickness="3dp"
-        app:indicatorColor="@color/dark_green"
-        app:trackColor="@color/green"
+        app:indicatorColor="@color/green"
+        app:trackColor="@color/dark_green"
         app:indicatorSize="40dp"
         android:background="@drawable/circle_background"
         app:trackCornerRadius="8dp"

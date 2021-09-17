@@ -23,6 +23,7 @@ public class MoviesListItemView extends BaseObservableViewMvc<MoviesListItemView
     private final ImageView mPosterPathItemView;
     private final TextView mOverview;
     private final TextView mUserScore;
+    private final ProgressBar mUserScoreProgressIndicator;
 
     private Movie mMovie;
 
@@ -35,6 +36,7 @@ public class MoviesListItemView extends BaseObservableViewMvc<MoviesListItemView
         mPosterPathItemView = findViewById(R.id.posterItemView);
         mOverview = findViewById(R.id.overviewDescription);
         mUserScore = findViewById(R.id.percentItemView);
+        mUserScoreProgressIndicator = findViewById(R.id.progressIndicatorView);
         getRootView().setOnClickListener( view -> {
             for (Listener listener : getListeners()) {
                 listener.onMovieItemClicked(mMovie);
@@ -45,9 +47,11 @@ public class MoviesListItemView extends BaseObservableViewMvc<MoviesListItemView
     @Override
     public void bindMovie(Movie movie) {
         mMovie = movie;
+        Integer value = (int)(10.0 * movie.getVote_average().doubleValue());
         mMovieItemTitleView.setText(movie.getOriginal_title());
         mYearItemView.setText(movie.getRelease_date().substring(0, 4));
-        mUserScore.setText((Integer.toString((int) (10.0 * movie.getVote_average().doubleValue()))));
+        mUserScore.setText(value.toString());
+        mUserScoreProgressIndicator.setProgress(value);
         mOverview.setText(movie.getOverview());
         //mTypeItemView.setText();
         Glide.with(mPosterPathItemView.getContext())
