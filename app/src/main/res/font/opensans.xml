@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+    <font android:font="@font/opensanslight" android:fontStyle="normal" android:fontWeight="200" />
+    <font android:font="@font/opensansregular" android:fontStyle="normal" android:fontWeight="400" />
+    <font android:font="@font/opensanssemibold" android:fontStyle="normal" android:fontWeight="600" />
+</font-family>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MovieDBTextView" parent="android:Widget.TextView">
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+
+    <style name="MovieDBTextView.Bold" parent="MovieDBTextView">
+        <item name="fontFamily">@font/opensansbold</item>
+        <item name="android:fontFamily">@font/opensansbold</item>
+    </style>
+
+    <style name="MovieDBTextView.SemiBold" parent="MovieDBTextView">
+        <item name="fontFamily">@font/opensanssemibold</item>
+        <item name="android:fontFamily">@font/opensanssemibold</item>
+    </style>
+
+    <style name="MovieDBTextView.Regular" parent="MovieDBTextView">
+        <item name="fontFamily">@font/opensansregular</item>
+        <item name="android:fontFamily">@font/opensansregular</item>
+    </style>
+
+    <style name="MovieDBTextView.Light" parent="MovieDBTextView">
+        <item name="fontFamily">@font/opensanslight</item>
+        <item name="android:fontFamily">@font/opensanslight</item>
+    </style>
+
+</resources>

@@ -1,0 +1,2 @@
+rootProject.name = "MovieDBClientMVC"
+include ':app'
