@@ -9,6 +9,7 @@ import com.san.moviedbclientmvc.common.views.BaseObservableViewMvc;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -21,6 +22,7 @@ public class MoviesListItemView extends BaseObservableViewMvc<MoviesListItemView
     private final TextView mTypeItemView;
     private final ImageView mPosterPathItemView;
     private final TextView mOverview;
+    private final TextView mUserScore;
 
     private Movie mMovie;
 
@@ -32,6 +34,7 @@ public class MoviesListItemView extends BaseObservableViewMvc<MoviesListItemView
         mTypeItemView = findViewById(R.id.typeItemView);
         mPosterPathItemView = findViewById(R.id.posterItemView);
         mOverview = findViewById(R.id.overviewDescription);
+        mUserScore = findViewById(R.id.percentItemView);
         getRootView().setOnClickListener( view -> {
             for (Listener listener : getListeners()) {
                 listener.onMovieItemClicked(mMovie);
@@ -44,6 +47,7 @@ public class MoviesListItemView extends BaseObservableViewMvc<MoviesListItemView
         mMovie = movie;
         mMovieItemTitleView.setText(movie.getOriginal_title());
         mYearItemView.setText(movie.getRelease_date().substring(0, 4));
+        mUserScore.setText((Integer.toString((int) (10.0 * movie.getVote_average().doubleValue()))));
         mOverview.setText(movie.getOverview());
         //mTypeItemView.setText();
         Glide.with(mPosterPathItemView.getContext())
