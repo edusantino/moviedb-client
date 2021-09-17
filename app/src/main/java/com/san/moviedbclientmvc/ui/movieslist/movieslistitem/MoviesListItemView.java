@@ -20,6 +20,7 @@ public class MoviesListItemView extends BaseObservableViewMvc<MoviesListItemView
     private final TextView mYearItemView;
     private final TextView mTypeItemView;
     private final ImageView mPosterPathItemView;
+    private final TextView mOverview;
 
     private Movie mMovie;
 
@@ -30,6 +31,7 @@ public class MoviesListItemView extends BaseObservableViewMvc<MoviesListItemView
         mYearItemView = findViewById(R.id.yearItemView);
         mTypeItemView = findViewById(R.id.typeItemView);
         mPosterPathItemView = findViewById(R.id.posterItemView);
+        mOverview = findViewById(R.id.overviewDescription);
         getRootView().setOnClickListener( view -> {
             for (Listener listener : getListeners()) {
                 listener.onMovieItemClicked(mMovie);
@@ -42,6 +44,7 @@ public class MoviesListItemView extends BaseObservableViewMvc<MoviesListItemView
         mMovie = movie;
         mMovieItemTitleView.setText(movie.getOriginal_title());
         mYearItemView.setText(movie.getRelease_date().substring(0, 4));
+        mOverview.setText(movie.getOverview());
         //mTypeItemView.setText();
         Glide.with(mPosterPathItemView.getContext())
                 .load(Constants.URL_IMG + movie.getPoster_path())

@@ -12,7 +12,6 @@
         app:cardElevation="8dp"
         app:cardUseCompatPadding="true"
         app:cardCornerRadius="4dp"
-        android:background="@drawable/background_transp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="5dp"
@@ -21,9 +20,22 @@
         <ImageView
             android:id="@+id/posterItemView"
             android:layout_width="109dp"
-            android:layout_height="144dp" />
+            android:layout_height="144dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.cardview.widget.CardView>
+
+    <include
+        layout="@layout/progress_component"
+        android:id="@+id/progressView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/viewBackground"
+        android:elevation="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewBackground"/>
 
     <TextView
         android:id="@+id/movieItemTitleView"
@@ -66,20 +78,33 @@
         app:layout_constraintStart_toEndOf="@+id/yearItemView"
         android:layout_marginLeft="10dp" />
 
-    <include layout="@layout/progress_component"
-        android:id="@+id/progressComponent"
+    <TextView
+        android:id="@+id/overviewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/movieItemTitleView"
-        app:layout_constraintTop_toBottomOf="@+id/yearItemView"/>
+        android:textColor="@color/darkGray"
+        style="@style/MovieDBTextView.Bold"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        android:text="Sinopse"
+        app:layout_constraintTop_toBottomOf="@+id/yearItemView"
+        app:layout_constraintStart_toStartOf="@+id/yearItemView"/>
 
-    <!--<include layout="@layout/like_component"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/overviewDescription"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        app:layout_constraintTop_toTopOf="@+id/progressComponent"
-        app:layout_constraintBottom_toBottomOf="@+id/progressComponent"
-        app:layout_constraintStart_toEndOf="@+id/progressComponent"/>-->
+        android:textColor="@color/darkGray"
+        style="@style/MovieDBTextView.Light"
+        android:maxLines="3"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="15dp"
+        android:textSize="12sp"
+        android:text="Sinopse"
+        app:layout_constraintTop_toBottomOf="@+id/overviewTitle"
+        app:layout_constraintStart_toStartOf="@+id/yearItemView"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <View
         android:layout_width="match_parent"

@@ -6,5 +6,6 @@ data class Movie(var id: Integer,
                  var poster_path: String?,
                  var vote_count: Int,
                  var release_date: String,
-                 var vote_average: Number
+                 var vote_average: Number,
+                 var overview: String
 )
