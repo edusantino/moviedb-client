@@ -8,8 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="standard_blue">#2A6CB4</color>
-    <color name="darkGray">#4a4a4a</color>
+    <color name="darkGrey">#4a4a4a</color>
+    <color name="darkerGrey">#343434</color>
     <color name="top_color">#f0f0f0</color>
     <color name="green">#23ca77</color>
+    <color name="mariner_dark">#2C6CB4</color>
     <color name="dark_green">#204629</color>
 </resources>

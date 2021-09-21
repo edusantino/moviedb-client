@@ -48,7 +48,8 @@ class FetchMovieDetailsUseCase(private val mMoviedbApiService: MoviedbApiService
                     movie.vote_count,
                     movie.release_date,
                     movie.vote_average,
-                    movie.overview
+                    movie.overview,
+                    movie.releases
                 )
             )
         }
