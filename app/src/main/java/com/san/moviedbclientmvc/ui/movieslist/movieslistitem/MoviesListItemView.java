@@ -2,6 +2,7 @@ package com.san.moviedbclientmvc.ui.movieslist.movieslistitem;
 
 import com.bumptech.glide.Glide;
 import com.san.moviedbclientmvc.common.permissions.Constants;
+import com.san.moviedbclientmvc.networking.model.Countries;
 import com.san.moviedbclientmvc.networking.model.Movie;
 import com.san.moviedbclientmvc.R;
 import com.san.moviedbclientmvc.common.views.BaseObservableViewMvc;
@@ -13,6 +14,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
+
+import java.util.List;
 
 public class MoviesListItemView extends BaseObservableViewMvc<MoviesListItemViewContract.Listener>
         implements MoviesListItemViewContract {
@@ -24,6 +29,10 @@ public class MoviesListItemView extends BaseObservableViewMvc<MoviesListItemView
     private final TextView mOverview;
     private final TextView mUserScore;
     private final ProgressBar mUserScoreProgressIndicator;
+
+    private final TextView mMovieDetailsCertificate;
+    private final ConstraintLayout mMovieDetailsClassificationView;
+    private String mClassificationValue;
 
     private Movie mMovie;
 
@@ -37,6 +46,10 @@ public class MoviesListItemView extends BaseObservableViewMvc<MoviesListItemView
         mOverview = findViewById(R.id.overviewDescription);
         mUserScore = findViewById(R.id.percentItemView);
         mUserScoreProgressIndicator = findViewById(R.id.progressIndicatorView);
+
+        mMovieDetailsCertificate = findViewById(R.id.certificateView);
+        mMovieDetailsClassificationView = findViewById(R.id.like_component);
+
         getRootView().setOnClickListener( view -> {
             for (Listener listener : getListeners()) {
                 listener.onMovieItemClicked(mMovie);
@@ -53,10 +66,13 @@ public class MoviesListItemView extends BaseObservableViewMvc<MoviesListItemView
         mUserScore.setText(value.toString());
         mUserScoreProgressIndicator.setProgress(value);
         mOverview.setText(movie.getOverview());
-        //mTypeItemView.setText();
+
         Glide.with(mPosterPathItemView.getContext())
                 .load(Constants.URL_IMG + movie.getPoster_path())
                 .centerCrop()
                 .into(mPosterPathItemView);
+
+        // Classification area
+
     }
 }

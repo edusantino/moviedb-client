@@ -1,5 +1,6 @@
 package com.san.moviedbclientmvc.ui.moviedetails.view;
 
+import android.content.Context;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,14 +10,19 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.san.moviedbclientmvc.common.permissions.Constants;
+import com.san.moviedbclientmvc.networking.model.Countries;
 import com.san.moviedbclientmvc.networking.model.Movie;
 import com.san.moviedbclientmvc.R;
 import com.san.moviedbclientmvc.common.factory.ViewMvcFactory;
 import com.san.moviedbclientmvc.common.toolbar.ToolbarViewMvc;
 import com.san.moviedbclientmvc.common.views.BaseObservableViewMvc;
+
+import java.util.List;
 
 
 public class MovieDetailsView extends BaseObservableViewMvc<MovieDetailsViewContract.Listener>
@@ -30,6 +36,9 @@ public class MovieDetailsView extends BaseObservableViewMvc<MovieDetailsViewCont
     private final TextView mMovieDetailsType;
     private final ProgressBar mProgressBar;
     private final ImageView mMovieDetailsPosterView;
+    private final TextView mMovieDetailsCertificate;
+    private final ConstraintLayout mMovieDetailsClassificationView;
+    private String mClassificationValue;
 
     public MovieDetailsView(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory) {
 
@@ -37,9 +46,11 @@ public class MovieDetailsView extends BaseObservableViewMvc<MovieDetailsViewCont
 
         mMovieDetailsTitle = findViewById(R.id.movieDetailsTitleView);
         mMovieDetailsType = findViewById(R.id.movieDetailsTypeView);
-        mMovieDetailsPosterView = findViewById(R.id.movieDetailsPosterView);
+        mMovieDetailsPosterView = findViewById(R.id.backDropPathView);
         mProgressBar = findViewById(R.id.progress);
         mToolbar = findViewById(R.id.toolbar);
+        mMovieDetailsCertificate = findViewById(R.id.certificateView);
+        mMovieDetailsClassificationView = findViewById(R.id.like_component);
 
         mToolbarViewMvc = viewMvcFactory.getToolbarViewMvc(mToolbar);
 
@@ -51,24 +62,29 @@ public class MovieDetailsView extends BaseObservableViewMvc<MovieDetailsViewCont
 
         mToolbarViewMvc.setTitle(getString(R.string.question_details_screen_title));
 
-        mToolbarViewMvc.enableUpButtonAndListen(new ToolbarViewMvc.NavigateUpClickListener() {
-            @Override
-            public void onNavigateUpClicked() {
-                for (Listener listener : getListeners()) {
-                    listener.onNavigateUpClicked();
-                }
+        mToolbarViewMvc.enableUpButtonAndListen(() -> {
+            for (Listener listener : getListeners()) {
+                listener.onNavigateUpClicked();
             }
         });
     }
 
     @Override
     public void bindMovie(Movie movie) {
-        String questionTitle = movie.getOriginal_title();
+
+        getReleaseString(movie.getReleases().getCountries());
+        if (mClassificationValue.equals("")) {
+            mMovieDetailsCertificate.setText("?");
+        } else {
+            mMovieDetailsCertificate.setText(mClassificationValue);
+        }
+
+        mMovieDetailsClassificationView.setBackground(ContextCompat.getDrawable(getRootView().getContext(), setupClassificationView()));
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            mMovieDetailsTitle.setText(Html.fromHtml(questionTitle, Html.FROM_HTML_MODE_LEGACY));
+            mMovieDetailsTitle.setText(Html.fromHtml(movie.getOriginal_title(), Html.FROM_HTML_MODE_LEGACY));
         } else {
-            mMovieDetailsTitle.setText(Html.fromHtml(questionTitle));
+            mMovieDetailsTitle.setText(Html.fromHtml(movie.getOriginal_title()));
         }
 
         Glide.with(mMovieDetailsPosterView.getContext())
@@ -77,6 +93,48 @@ public class MovieDetailsView extends BaseObservableViewMvc<MovieDetailsViewCont
                 .into(mMovieDetailsPosterView);
     }
 
+    private void getReleaseString(List<Countries> countries) {
+        for (Countries country: countries) {
+            if (country.getIso_3166_1().equals("BR")) {
+                mClassificationValue = country.getCertification();
+                break;
+            }
+        }
+    }
+
+    private int setupClassificationView() {
+        int val = 0;
+
+        switch (mClassificationValue==null? "":mClassificationValue) {
+            case "L":
+                val = R.drawable.background_l;
+                break;
+            case "10":
+                val = R.drawable.background_10;
+                break;
+
+            case "12":
+                val = R.drawable.background_12;
+                break;
+
+            case "14":
+                val = R.drawable.background_14;
+                break;
+
+            case "16":
+                val =  R.drawable.background_16;
+                break;
+
+            case "18":
+                val =  R.drawable.background_18;
+                break;
+
+            case "":
+                val = R.drawable.background_interr;
+                break;
+        }
+        return val;
+    }
 
     @Override
     public void showProgressIndication() {
