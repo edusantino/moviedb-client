@@ -34,6 +34,7 @@ public class MovieDetailsView extends BaseObservableViewMvc<MovieDetailsViewCont
 
     private final TextView mMovieDetailsTitle;
     private final TextView mMovieDetailsType;
+    private final TextView mMovieDetailSubDescription;
     private final ProgressBar mProgressBar;
     private final ImageView mMovieDetailsPosterView;
     private final TextView mMovieDetailsCertificate;
@@ -49,6 +50,7 @@ public class MovieDetailsView extends BaseObservableViewMvc<MovieDetailsViewCont
         mMovieDetailsPosterView = findViewById(R.id.backDropPathView);
         mProgressBar = findViewById(R.id.progress);
         mToolbar = findViewById(R.id.toolbar);
+        mMovieDetailSubDescription = findViewById(R.id.movieDetailsSubDescription);
         mMovieDetailsCertificate = findViewById(R.id.certificateView);
         mMovieDetailsClassificationView = findViewById(R.id.like_component);
 
@@ -80,7 +82,7 @@ public class MovieDetailsView extends BaseObservableViewMvc<MovieDetailsViewCont
         }
 
         mMovieDetailsClassificationView.setBackground(ContextCompat.getDrawable(getRootView().getContext(), setupClassificationView()));
-
+        mMovieDetailSubDescription.setText(movie.getOverview());
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             mMovieDetailsTitle.setText(Html.fromHtml(movie.getOriginal_title(), Html.FROM_HTML_MODE_LEGACY));
         } else {
@@ -91,6 +93,8 @@ public class MovieDetailsView extends BaseObservableViewMvc<MovieDetailsViewCont
                 .load(Constants.URL_IMG + movie.getPoster_path())
                 .centerCrop()
                 .into(mMovieDetailsPosterView);
+
+
     }
 
     private void getReleaseString(List<Countries> countries) {

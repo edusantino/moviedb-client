@@ -2,7 +2,6 @@ package com.san.moviedbclientmvc.ui.movieslist.movieslistitem;
 
 import com.bumptech.glide.Glide;
 import com.san.moviedbclientmvc.common.permissions.Constants;
-import com.san.moviedbclientmvc.networking.model.Countries;
 import com.san.moviedbclientmvc.networking.model.Movie;
 import com.san.moviedbclientmvc.R;
 import com.san.moviedbclientmvc.common.views.BaseObservableViewMvc;
@@ -15,9 +14,6 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
-
-import java.util.List;
 
 public class MoviesListItemView extends BaseObservableViewMvc<MoviesListItemViewContract.Listener>
         implements MoviesListItemViewContract {
@@ -43,7 +39,7 @@ public class MoviesListItemView extends BaseObservableViewMvc<MoviesListItemView
         mYearItemView = findViewById(R.id.yearItemView);
         mTypeItemView = findViewById(R.id.typeItemView);
         mPosterPathItemView = findViewById(R.id.posterItemView);
-        mOverview = findViewById(R.id.overviewDescription);
+        mOverview = findViewById(R.id.movieDetailsSubDescription);
         mUserScore = findViewById(R.id.percentItemView);
         mUserScoreProgressIndicator = findViewById(R.id.progressIndicatorView);
 
