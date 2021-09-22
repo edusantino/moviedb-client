@@ -8,5 +8,4 @@ data class Movie (var id: Integer,
                  var release_date: String,
                  var vote_average: Number,
                  var overview: String,
-                 var releases: Releases?
-)
+                 var releases: Releases?)

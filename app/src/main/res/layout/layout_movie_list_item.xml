@@ -93,7 +93,7 @@
         app:layout_constraintStart_toStartOf="@+id/yearItemView"/>
 
     <TextView
-        android:id="@+id/overviewDescription"
+        android:id="@+id/movieDetailsSubDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textColor="@color/darkGrey"
