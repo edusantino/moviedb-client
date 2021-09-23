@@ -1,7 +1,7 @@
-package com.san.moviedbclientmvc.common.views;
+package com.san.moviedbclientmvc.common.views
 
-import android.view.View;
+import android.view.View
 
-public interface ViewMvc {
-    View getRootView();
+interface ViewMvc {
+    val rootView: View?
 }

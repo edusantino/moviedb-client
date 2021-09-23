@@ -1,6 +1,5 @@
 package com.san.moviedbclientmvc.ui.moviedetails.view;
 
-import android.content.Context;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,15 +13,16 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
+import com.san.moviedbclientmvc.common.factory.ViewMvcFactory;
 import com.san.moviedbclientmvc.common.permissions.Constants;
 import com.san.moviedbclientmvc.networking.model.Countries;
 import com.san.moviedbclientmvc.networking.model.Movie;
 import com.san.moviedbclientmvc.R;
-import com.san.moviedbclientmvc.common.factory.ViewMvcFactory;
 import com.san.moviedbclientmvc.common.toolbar.ToolbarViewMvc;
 import com.san.moviedbclientmvc.common.views.BaseObservableViewMvc;
 
 import java.util.List;
+import java.util.Objects;
 
 
 public class MovieDetailsView extends BaseObservableViewMvc<MovieDetailsViewContract.Listener>
@@ -39,6 +39,8 @@ public class MovieDetailsView extends BaseObservableViewMvc<MovieDetailsViewCont
     private final ImageView mMovieDetailsPosterView;
     private final TextView mMovieDetailsCertificate;
     private final ConstraintLayout mMovieDetailsClassificationView;
+    private final ProgressBar mMovieDetailsUserScoreProgress;
+    private final TextView mMovieDetailsUserScore;
     private String mClassificationValue;
 
     public MovieDetailsView(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory) {
@@ -53,6 +55,8 @@ public class MovieDetailsView extends BaseObservableViewMvc<MovieDetailsViewCont
         mMovieDetailSubDescription = findViewById(R.id.movieDetailsSubDescription);
         mMovieDetailsCertificate = findViewById(R.id.certificateView);
         mMovieDetailsClassificationView = findViewById(R.id.like_component);
+        mMovieDetailsUserScoreProgress = findViewById(R.id.progressIndicatorView);
+        mMovieDetailsUserScore = findViewById(R.id.percentItemView);
 
         mToolbarViewMvc = viewMvcFactory.getToolbarViewMvc(mToolbar);
 
@@ -73,8 +77,9 @@ public class MovieDetailsView extends BaseObservableViewMvc<MovieDetailsViewCont
 
     @Override
     public void bindMovie(Movie movie) {
+        Integer value = (int)(10.0 * movie.getVote_average().doubleValue());
 
-        getReleaseString(movie.getReleases().getCountries());
+        getReleaseString(Objects.requireNonNull(movie.getReleases().getCountries()));
         if (mClassificationValue.equals("")) {
             mMovieDetailsCertificate.setText("?");
         } else {
@@ -83,6 +88,8 @@ public class MovieDetailsView extends BaseObservableViewMvc<MovieDetailsViewCont
 
         mMovieDetailsClassificationView.setBackground(ContextCompat.getDrawable(getRootView().getContext(), setupClassificationView()));
         mMovieDetailSubDescription.setText(movie.getOverview());
+        mMovieDetailsUserScore.setText(value.toString());
+        mMovieDetailsUserScoreProgress.setProgress(value);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             mMovieDetailsTitle.setText(Html.fromHtml(movie.getOriginal_title(), Html.FROM_HTML_MODE_LEGACY));
         } else {
