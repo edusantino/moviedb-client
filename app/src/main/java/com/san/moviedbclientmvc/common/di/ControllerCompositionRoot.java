@@ -6,10 +6,10 @@ import android.view.LayoutInflater;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
+import com.san.moviedbclientmvc.common.factory.ViewMvcFactory;
 import com.san.moviedbclientmvc.ui.movieslist.usecase.FetchLastActiveMoviesUseCase;
 import com.san.moviedbclientmvc.ui.moviedetails.usecase.FetchMovieDetailsUseCase;
 import com.san.moviedbclientmvc.networking.MoviedbApiService;
-import com.san.moviedbclientmvc.common.factory.ViewMvcFactory;
 import com.san.moviedbclientmvc.common.controllers.BackPressDispatcher;
 import com.san.moviedbclientmvc.common.dialogs.DialogsEventBus;
 import com.san.moviedbclientmvc.common.dialogs.DialogsManager;

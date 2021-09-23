@@ -11,12 +11,12 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <ImageButton
                 android:id="@+id/toolBarBackButtonView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginVertical="10dp"
                 android:src="@drawable/ic_back_arrow"
                 android:visibility="gone"
@@ -27,8 +27,8 @@
 
             <ImageButton
                 android:id="@+id/toolBarMenuButtonView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/ic_menu"
                 android:visibility="gone"
                 android:background="@color/transparent"

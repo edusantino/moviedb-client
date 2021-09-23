@@ -11,12 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.san.moviedbclientmvc.R;
-import com.san.moviedbclientmvc.networking.model.Movie;
 import com.san.moviedbclientmvc.common.factory.ViewMvcFactory;
+import com.san.moviedbclientmvc.networking.model.Movie;
 import com.san.moviedbclientmvc.common.navdrawer.NavDrawerHelper;
 import com.san.moviedbclientmvc.common.toolbar.ToolbarViewMvc;
 import com.san.moviedbclientmvc.common.views.BaseObservableViewMvc;
-import com.san.moviedbclientmvc.networking.model.Releases;
 import com.san.moviedbclientmvc.ui.movieslist.view.controller.MoviesListViewContract;
 
 import java.util.List;
