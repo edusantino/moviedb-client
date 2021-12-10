@@ -17,7 +17,7 @@ class MoviesRecyclerAdapter(private val mListener: Listener,
     }
 
     class MyViewHolder(val mViewMvc: MoviesListItemViewContract) : RecyclerView.ViewHolder(
-        mViewMvc.rootView
+        mViewMvc.rootView!!
     )
 
     private var mMovies: List<Movie> = ArrayList()
