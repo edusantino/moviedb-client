@@ -16,9 +16,7 @@ public class MoviesListFragment extends BaseFragment {
     public static Fragment newInstance() {
         return new MoviesListFragment();
     }
-
     private static final String SAVED_STATE_CONTROLLER = "SAVED_STATE_CONTROLLER";
-
     private MoviesListController mMoviesListController;
 
     @Nullable

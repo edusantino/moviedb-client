@@ -18,6 +18,8 @@ import com.san.moviedbclientmvc.common.toolbar.ToolbarViewMvc;
 import com.san.moviedbclientmvc.common.views.BaseObservableViewMvc;
 import com.san.moviedbclientmvc.ui.movieslist.view.controller.MoviesListViewContract;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 public class MoviesListView extends BaseObservableViewMvc<MoviesListViewContract.Listener>

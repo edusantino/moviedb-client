@@ -10,8 +10,7 @@ public interface MovieDetailsViewContract extends ObservableViewMvc<MovieDetails
     }
 
     void bindMovie(Movie movie);
-
     void showProgressIndication();
-
     void hideProgressIndication();
+    void initViews();
 }

@@ -14,7 +14,7 @@ public abstract class BaseViewMvc implements ViewMvc {
         return mRootView;
     }
 
-    protected void setRootView(View rootView) {
+    public void setRootView(View rootView) {
         mRootView = rootView;
     }
 

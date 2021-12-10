@@ -12,14 +12,14 @@ import com.san.moviedbclientmvc.common.permissions.Constants
 import com.san.moviedbclientmvc.common.views.BaseObservableViewMvc
 import com.san.moviedbclientmvc.networking.model.Movie
 
-class MoviesListItemView(inflater: LayoutInflater, parent: ViewGroup?) : BaseObservableViewMvc<MoviesListItemViewContract.Listener>(),
-                        MoviesListItemViewContract {
+class MoviesListItemView(inflater: LayoutInflater, parent: ViewGroup?)
+    : BaseObservableViewMvc<MoviesListItemViewContract.Listener>(), MoviesListItemViewContract {
 
     init {
         rootView = inflater.inflate(R.layout.layout_movie_list_item, parent, false)
-        rootView.setOnClickListener { view: View? ->
+        rootView?.setOnClickListener {
             for (listener in listeners) {
-                listener!!.onMovieItemClicked(mMovie)
+                listener.onMovieItemClicked(mMovie)
             }
         }
     }

@@ -156,4 +156,9 @@ public class MovieDetailsView extends BaseObservableViewMvc<MovieDetailsViewCont
     public void hideProgressIndication() {
         mProgressBar.setVisibility(View.GONE);
     }
+
+    @Override
+    public void initViews() {
+
+    }
 }
