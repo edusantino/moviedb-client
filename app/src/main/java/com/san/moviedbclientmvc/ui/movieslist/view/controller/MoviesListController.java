@@ -1,5 +1,10 @@
 package com.san.moviedbclientmvc.ui.movieslist.view.controller;
 
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.san.moviedbclientmvc.common.dialogs.DialogsEventBus;
 import com.san.moviedbclientmvc.common.dialogs.DialogsManager;
 import com.san.moviedbclientmvc.common.screensnavigator.ScreensNavigator;
@@ -8,6 +13,7 @@ import com.san.moviedbclientmvc.ui.movieslist.usecase.FetchLastActiveMoviesUseCa
 import com.san.moviedbclientmvc.common.dialogs.promptdialog.PromptDialogEvent;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MoviesListController implements
@@ -25,6 +31,7 @@ public class MoviesListController implements
     private final DialogsEventBus mDialogsEventBus;
 
     private MoviesListViewContract mViewMvc;
+    private Parcelable mParcelable;
 
     private ScreenState mScreenState = ScreenState.IDLE;
 
@@ -45,6 +52,8 @@ public class MoviesListController implements
     public SavedState getSavedState() {
         return new SavedState(mScreenState);
     }
+
+    public Parcelable getmParcelable() { return mParcelable; }
 
     public void restoreSavedState(SavedState savedState) {
         mScreenState = savedState.mScreenState;
@@ -75,6 +84,12 @@ public class MoviesListController implements
     @Override
     public void onMovieItemClicked(Movie movie) {
         mScreensNavigator.toMovieDetails(movie.getId());
+    }
+
+    @NonNull
+    @Override
+    public Parcelable saveOnBackPressed(@NonNull Parcelable parcelable) {
+        return parcelable;
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,11 +33,13 @@ public class MoviesListView extends BaseObservableViewMvc<MoviesListViewContract
     private final RecyclerView mRecyclerQuestions;
     private final MoviesRecyclerAdapter mAdapter;
     private final ProgressBar mProgressBar;
+    private int lastPos = 0;
 
     public MoviesListView(LayoutInflater inflater,
                           @Nullable ViewGroup parent,
                           NavDrawerHelper navDrawerHelper,
                           ViewMvcFactory viewMvcFactory) {
+
         mNavDrawerHelper = navDrawerHelper;
         setRootView(inflater.inflate(R.layout.layout_movie_list, parent, false));
 
@@ -67,11 +70,12 @@ public class MoviesListView extends BaseObservableViewMvc<MoviesListViewContract
     public void onMovieItemClicked(Movie movie) {
         for (Listener listener : getListeners()) {
             listener.onMovieItemClicked(movie);
+            listener.saveOnBackPressed(mRecyclerQuestions.getLayoutManager().onSaveInstanceState());
         }
     }
 
     @Override
-    public void bindMovies(List<Movie> movies) {
+    public void bindMovies(@NonNull List<Movie> movies) {
         mAdapter.bindMovies(movies);
     }
 
@@ -84,5 +88,4 @@ public class MoviesListView extends BaseObservableViewMvc<MoviesListViewContract
     public void hideProgressIndication() {
         mProgressBar.setVisibility(View.GONE);
     }
-
 }
