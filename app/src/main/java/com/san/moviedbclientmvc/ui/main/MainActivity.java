@@ -3,6 +3,7 @@ package com.san.moviedbclientmvc.ui.main;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.san.moviedbclientmvc.common.controllers.BackPressDispatcher;
@@ -36,6 +37,14 @@ public class MainActivity extends BaseActivity implements
 
         if (savedInstanceState == null) {
             mScreensNavigator.toMoviesList();
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null) {
+
         }
     }
 

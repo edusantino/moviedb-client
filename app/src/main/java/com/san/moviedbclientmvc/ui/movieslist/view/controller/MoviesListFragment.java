@@ -1,6 +1,7 @@
 package com.san.moviedbclientmvc.ui.movieslist.view.controller;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ public class MoviesListFragment extends BaseFragment {
     }
     private static final String SAVED_STATE_CONTROLLER = "SAVED_STATE_CONTROLLER";
     private MoviesListController mMoviesListController;
+    private static final String LIST_STATE_KEY = "LIST_STATE_KEY";
 
     @Nullable
     @Override
@@ -56,5 +58,14 @@ public class MoviesListFragment extends BaseFragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable(SAVED_STATE_CONTROLLER, mMoviesListController.getSavedState());
+        outState.putParcelable(LIST_STATE_KEY, mMoviesListController.getmParcelable());
+    }
+    
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if (savedInstanceState != null) {
+            savedInstanceState.getParcelable(LIST_STATE_KEY);
+        }
     }
 }

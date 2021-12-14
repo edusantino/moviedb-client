@@ -17,7 +17,7 @@ public class ScreensNavigator {
     }
 
     public void toMoviesList() {
-        mFragmentFrameHelper.replaceFragmentAndClearBackstack(MoviesListFragment.newInstance());
+        mFragmentFrameHelper.replaceFragment(MoviesListFragment.newInstance());
     }
 
     public void navigateUp() {
